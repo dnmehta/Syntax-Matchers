@@ -3,10 +3,26 @@ from sys import argv
 
 def DFS(node):
 	typeNode = type(node).__name__ ;
-	if typeNode == "If":
+	if typeNode == "If" or typeNode=="Switch" or typeNode=="While" or typeNode=="DoWhile":
 		DFS(node.cond);
 	elif typeNode == "Assignment":
-		print "####WARNING####";
+		print "####WARNING####";  # After the necessary dict check
+	
+	elif typeNode=="BinaryOp":
+		#No need for a DFS here? Just check the type.
+		if node.op=='==':
+			print "Fine!"
+	elif typeNode=="FuncDef":
+		for i in node.body:
+			DFS(i);
+
+	
+	
+		
+
+
+
+
 
 class visitor(pyc.c_ast.NodeVisitor):
 
@@ -14,9 +30,9 @@ class visitor(pyc.c_ast.NodeVisitor):
 		self.funcname = funcname
 
 	def visit_FuncDef(self,node): # Our entry point , now I can do custom DFS :D
-		print "HI";
+		# print "HI";
 		DFS(node);
-		DFS(node);
+		# DFS(node);
 	# def visit_ID(self,node):
 	# 	print "ID: " + node.name;
 
