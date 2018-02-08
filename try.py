@@ -9,7 +9,7 @@ def DFS(node):
 		DFS(node.iftrue);
 		DFS(node.iffalse);
 	elif typeNode == "Assignment":
-		print "####WARNING####";  # After the necessary dict check
+		print "####WARNING####";  # After the necessary dict check (run this code this way on test1.c to see the importance of dict. Normal assignments me bhi Warning xD )
 	elif typeNode=="Case":
 		DFS(node.expr);
 		for i in node.stmts:
